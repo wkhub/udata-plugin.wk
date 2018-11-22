@@ -1,0 +1,70 @@
+[mix]
+
+copy = [
+    '.circleci/*',
+    '**/static/**/*',
+    '**/templates/**/*',
+]
+
+ignore = [
+    '**/*.pyc',
+]
+
+[[params]]
+key = 'project_name'
+label = 'Project name'
+type = 'string'
+default = 'My Plugin'
+
+[[params]]
+key = 'project_slug'
+label = "Slug"
+type = 'string'
+prompt = "Project slug ?"
+default = 'udata-{{ .ctx.project_name | replace " " "-" | lower }}'
+
+[[params]]
+key = 'license'
+label = "License"
+type = 'string'
+choices = ["AGPL", "MIT"]
+prompt = "Under which license the plugin will be published ?"
+default = "AGPL"
+
+[[params]]
+key = 'pypackage'
+label = "Python package"
+prompt = "What's the root Python package name ?"
+default = '{{ .ctx.project_slug | replace "-" "_" }}'
+
+[[params]]
+key = 'identifier'
+label = "Plugin identifier"
+type = 'string'
+default = '{{ .ctx.project_slug | replace "udata-" "" }}'
+
+[[params]]
+key = 'author'
+default = "Open Data Team"
+
+[[params]]
+key = 'email'
+default =  "contact@opendata.team"
+
+[[params]]
+key = 'description'
+default = "My awesome uData plugin"
+
+[[params]]
+key = 'version'
+default =  "0.1.0.dev"
+
+[[params]]
+key = 'website'
+default = "https://github.com/opendatateam/{{ .ctx.project_slug }}"
+
+[[params]]
+key = 'features'
+prompt = "Which features do you want to expose ?"
+multi = true
+choices = ["harvester", "theme", "views", "metrics", "models", "linkchecker", "tasks", "preview", "generic"]
