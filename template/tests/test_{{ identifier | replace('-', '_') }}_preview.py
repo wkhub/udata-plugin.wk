@@ -7,7 +7,7 @@ from udata.core.dataset.factories import DatasetFactory, ResourceFactory
 
 pytestmark = [
     pytest.mark.usefixtures('clean_db'),
-    pytest.mark.options(PLUGINS=['{{ .ctx.identifier }}']),
+    pytest.mark.options(PLUGINS=['{{ identifier }}']),
 ]
 
 

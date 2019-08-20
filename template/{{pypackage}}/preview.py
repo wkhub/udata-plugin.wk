@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from udata.core.dataset.preview import PreviewPlugin
 
 
-class {{ .ctx.identifier | title | replace "-" "" }}Preview(PreviewPlugin):
+class {{ identifier | title | replace('-', '_') }}Preview(PreviewPlugin):
     def can_preview(self, resource):
         # Implement here the logic to determinate wether or not you can display a preview
         return False

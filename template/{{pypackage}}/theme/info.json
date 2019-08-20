@@ -1,0 +1,11 @@
+{
+    "application": "udata",
+    "identifier": "{{ identifier }}",
+    "name": "{{ project_name }}",
+    "author": "{{ author }}",
+    "description": "{{ description }}",
+    "website": "{{ website }}",
+    "license": "{{ license }}",
+    "version": "{{ version }}",
+    "doctype": "html5"
+}

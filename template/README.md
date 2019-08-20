@@ -1,17 +1,17 @@
-# {{ .ctx.project_name }}
+# {{ project_name }}
 
-{{ .ctx.description }}
+{{ description }}
 
 ## Usage
 
 Install the plugin package in you udata environement:
 
 ```bash
-pip install {{ .ctx.project_slug }}
+pip install {{ project_slug }}
 ```
 
 Then activate it in your `udata.cfg`:
 
 ```python
-PLUGINS = ['{{ .ctx.project_slug }}']
+PLUGINS = ['{{ project_slug }}']
 ```

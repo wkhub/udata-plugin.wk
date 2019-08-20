@@ -8,6 +8,19 @@ copy = [
 
 ignore = [
     '**/*.pyc',
+    # Unused modules
+    "{% if not features.Has('harvester') %}harvesters.py{% endif %}",
+    "{% if not features.Has('theme') %}theme{% endif %}",
+    "{% if not features.Has('views') %}views.py{% endif %}",
+    "{% if not features.Has('metrics') %}metrics.py{% endif %}",
+    "{% if not features.Has('models') %}models.py{% endif %}",
+    "{% if not features.Has('linkchecker') %}linkchecker.py{% endif %}",
+    "{% if not features.Has('tasks') %}tasks.py{% endif %}",
+    "{% if not features.Has('preview') %}preview.py{% endif %}",
+    # Unused tests
+    '{% if not features.Has("harvester") %}test_{{ identifier | replace("-", "_") }}_backend.py{% endif %}',
+    '{% if not features.Has("views") %}test_{{ identifier | replace("-", "_") }}_views.py{% endif %}',
+    '{% if not features.Has("preview") %}test_{{ identifier | replace("-", "_") }}_preview.py{% endif %}',
 ]
 
 [[params]]
@@ -21,7 +34,7 @@ key = 'project_slug'
 label = "Slug"
 type = 'string'
 prompt = "Project slug ?"
-default = 'udata-{{ .ctx.project_name | replace " " "-" | lower }}'
+default = 'udata-{{ project_name | replace(" ", "-") | lower }}'
 
 [[params]]
 key = 'license'
@@ -35,13 +48,13 @@ default = "AGPL"
 key = 'pypackage'
 label = "Python package"
 prompt = "What's the root Python package name ?"
-default = '{{ .ctx.project_slug | replace "-" "_" }}'
+default = '{{ project_slug | replace("-", "_") }}'
 
 [[params]]
 key = 'identifier'
 label = "Plugin identifier"
 type = 'string'
-default = '{{ .ctx.project_slug | replace "udata-" "" }}'
+default = '{{ project_slug | replace("udata-", "") }}'
 
 [[params]]
 key = 'author'
@@ -61,10 +74,11 @@ default =  "0.1.0.dev"
 
 [[params]]
 key = 'website'
-default = "https://github.com/opendatateam/{{ .ctx.project_slug }}"
+default = "https://github.com/opendatateam/{{ project_slug }}"
 
 [[params]]
 key = 'features'
+type = 'set'
 prompt = "Which features do you want to expose ?"
-multi = true
 choices = ["harvester", "theme", "views", "metrics", "models", "linkchecker", "tasks", "preview", "generic"]
+

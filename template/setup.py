@@ -41,13 +41,13 @@ tests_require = pip('test.pip')
 
 
 setup(
-    name='{{ .ctx.project_slug }}',
-    version=__import__('{{ .ctx.pypackage }}').__version__,
-    description=__import__('{{ .ctx.pypackage }}').__description__,
+    name='{{ project_slug }}',
+    version=__import__('{{ pypackage }}').__version__,
+    description=__import__('{{ pypackage }}').__description__,
     long_description=long_description,
-    url='{{ .ctx.website }}',
-    author='{{ .ctx.author }}',
-    author_email='{{ .ctx.email }}',
+    url='{{ website }}',
+    author='{{ author }}',
+    author_email='{{ email }}',
     packages=find_packages(),
     include_package_data=True,
     install_requires=install_requires,
@@ -56,55 +56,55 @@ setup(
         'test': tests_require,
     },
     entry_points={
-        {{ if .ctx.features | contains "harvester" -}}
+        {% if features.Has('harvester') -%}
         'udata.harvesters': [
-            '{{.ctx.identifier}} = {{.ctx.pypackage}}.harvesters:{{ .ctx.identifier | title | replace "-" "" }}Backend',
+            '{{identifier}} = {{pypackage}}.harvesters:{{ identifier | title | replace("-", "") }}Backend',
         ],
-        {{- end }}
-        {{ if .ctx.features | contains "theme" -}}
+        {%- endif %}
+        {% if features.Has('theme') -%}
         'udata.theme': [
-            '{{.ctx.identifier}} = {{.ctx.pypackage}}.theme',
+            '{{identifier}} = {{pypackage}}.theme',
         ],
-        {{- end }}
-        {{if .ctx.features | contains "views" -}}
+        {%- endif %}
+        {% if features.Has('views') -%}
         'udata.views': [
-            '{{.ctx.identifier}} = {{.ctx.pypackage}}.views',
+            '{{identifier}} = {{pypackage}}.views',
         ],
-        {{- end }}
-        {{if .ctx.features | contains "metrics" -}}
+        {%- endif %}
+        {% if features.Has('metrics') -%}
         'udata.metrics': [
-            '{{.ctx.identifier}} = {{.ctx.pypackage}}.metrics',
+            '{{identifier}} = {{pypackage}}.metrics',
         ],
-        {{- end }}
-        {{if .ctx.features | contains "models" -}}
+        {%- endif %}
+        {% if features.Has('models') -%}
         'udata.models': [
-            '{{.ctx.identifier}} = {{.ctx.pypackage}}.models',
+            '{{identifier}} = {{pypackage}}.models',
         ],
-        {{- end }}
-        {{if .ctx.features | contains "linkchecker" -}}
+        {%- endif %}
+        {% if features.Has('linkchecker') -%}
         'udata.linkcheckers': [
-            '{{.ctx.identifier}} = {{.ctx.pypackage}}.linkchecker:{{ .ctx.identifier | title | replace "-" "" }}LinkChecker',
+            '{{identifier}} = {{pypackage}}.linkchecker:{{ identifier | title | replace("-", "") }}LinkChecker',
         ],
-        {{- end }}
-        {{if .ctx.features | contains "tasks" -}}
+        {%- endif %}
+        {% if features.Has('tasks') -%}
         'udata.tasks': [
-            '{{.ctx.identifier}} = {{.ctx.pypackage}}.tasks',
+            '{{identifier}} = {{pypackage}}.tasks',
         ],
-        {{- end }}
-        {{if .ctx.features | contains "preview" -}}
+        {%- endif %}
+        {% if features.Has('preview') -%}
         'udata.preview': [
-            '{{.ctx.identifier}} = {{.ctx.pypackage}}.preview:{{ .ctx.identifier | title | replace "-" "" }}Preview',
+            '{{identifier}} = {{pypackage}}.preview:{{ identifier | title | replace("-", "") }}Preview',
         ],
-        {{- end }}
-        {{if .ctx.features | contains "generic_plugin" -}}
+        {%- endif %}
+        {% if features.Has('generic_plugin') -%}
         'udata.plugins': [
-            '{{.ctx.identifier}} = {{.ctx.pypackage}}',
+            '{{identifier}} = {{pypackage}}',
         ],
-        {{- end }}
+        {%- endif %}
     },
-    license='{{ .ctx.license }}',
+    license='{{ license }}',
     zip_safe=False,
-    keywords='udata, harvester, {{ .ctx.project_name }}',
+    keywords='udata, harvester, {{ project_name }}',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Programming Language :: Python',

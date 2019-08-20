@@ -18,7 +18,7 @@ pytestmark = pytest.mark.usefixtures('clean_db')
 @pytest.mark.httpretty
 def test_simple():
     org = OrganizationFactory()
-    source = HarvestSourceFactory(backend='{{ .ctx.identifier }}',
+    source = HarvestSourceFactory(backend='{{ identifier }}',
                                   url=faker.url(),
                                   organization=org)
 

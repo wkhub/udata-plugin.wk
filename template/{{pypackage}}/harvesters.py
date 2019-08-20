@@ -1,13 +1,10 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from udata.harvest.backends.base import BaseBackend
 from udata.models import Resource
 from udata.utils import faker
 
 
-class {{ .ctx.identifier | title | replace "-" "" }}Backend(BaseBackend):
-    display_name = '{{ .ctx.project_name }}'
+class {{ identifier | title | replace('-', '_') }}Backend(BaseBackend):
+    display_name = '{{ project_name }}'
 
     def initialize(self):
         '''Generate a list of fake identifiers to harvest'''

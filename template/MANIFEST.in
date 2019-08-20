@@ -2,6 +2,6 @@ include LICENSE MANIFEST.in README.md CHANGELOG.md
 
 recursive-include requirements *
 
-recursive-include {{ .ctx.pypackage }} *
+recursive-include {{ pypackage }} *
 
 global-exclude *~ *.egg *.pyc

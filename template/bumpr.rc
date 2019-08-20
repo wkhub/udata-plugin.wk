@@ -1,5 +1,5 @@
 [bumpr]
-file = {{ .ctx.pypackage }}/__init__.py
+file = {{ pypackage }}/__init__.py
 vcs = git
 commit = true
 tag = true
